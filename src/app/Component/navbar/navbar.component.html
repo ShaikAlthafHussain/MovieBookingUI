@@ -1,0 +1,50 @@
+<header class="navbar navbar-expand-lg fixed-top bg-light">
+  <div class="container">
+    <a href="#" class="navbar-brand">
+      BookMyShow
+    </a>
+    <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse2">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <a *ngIf="!authStatus" routerLink="/login"
+      class="btn btn-outline-primary btn-sm fs-sm order-lg-3 me-2 d-none d-lg-inline-flex">
+      <i class="ai-login me-2 ms-n1"></i>
+      login
+    </a>
+    <button routerLink="/login" *ngIf="!authStatus"
+      class="btn btn-primary btn-sm fs-sm order-lg-3 d-none d-lg-inline-flex">
+      <i class="ai-login me-2 ms-n1"></i>
+      Sign in
+    </button>
+    <div *ngIf="authStatus" class="username order-lg-3">Welcome {{service.username}}   </div>
+
+    <a *ngIf="authStatus" role="button" (click)="logout()"
+      class="btn btn-outline-primary btn-sm fs-sm order-lg-3 d-none d-lg-inline-flex">
+      <i class="ai-login me-2 ms-n1"></i>
+      Logout
+    </a>
+    <nav class="collapse navbar-collapse" id="navbarCollapse2">
+      <ul class="navbar-nav mx-auto">
+        <li class="nav-item active">
+          <a routerLink="/" class="nav-link">Movies</a>
+        </li>
+        
+      </ul>
+      <a *ngIf="!authStatus" routerLink="/login"
+        class="btn btn-outline-primary btn-sm fs-sm d-lg-none ms-3 mb-4 mb-lg-0">
+        <i class="ai-login me-2 ms-n1"></i>
+        login
+      </a>
+      <a *ngIf="!authStatus" routerLink="/login" class="btn btn-primary btn-sm fs-sm d-lg-none ms-3 mb-4 mb-lg-0">
+        <i class="ai-login me-2 ms-n1"></i>
+        Sign in
+      </a>
+      <a *ngIf="authStatus" role="button" (click)="logout()" routerLink="/home"
+        class="btn btn-outline-primary btn-sm fs-sm d-lg-none ms-3 mb-4 mb-lg-0">
+        <i class="ai-login me-2 ms-n1"></i>
+        Logout
+      </a>
+    </nav>
+  </div>
+</header>

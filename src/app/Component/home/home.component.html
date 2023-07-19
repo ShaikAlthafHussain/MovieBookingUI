@@ -1,0 +1,47 @@
+<app-navbar></app-navbar>
+
+<section id="home" class="mt-5">
+    <div class="container mt-5 pt-5">
+        <ng-container *ngIf="!loading">
+            <div class="row">
+                <div class="col-md-4 mb-5" *ngFor="let movie of movieList">
+                    <div class="card" style="background-color:rgb(192, 195, 199);">
+
+                        <div class="card-body">
+                            <div class="d-flex flex-column h-100 px-sm-2 pt-sm-2 px-lg-0 pt-lg-0 px-xl-3 pt-xl-3">
+                                <h3 class="h4">{{movie.movieName}}</h3>
+                                <ul class="text-body list-unstyled mb-3">
+                                    <li class="mb-2">
+                                        <span>Genre: </span>
+                                        <strong>{{movie.genre}}</strong>
+                                    </li>
+                                    <li class="mb-2">
+                                        <span>Languages: </span>
+                                        <strong *ngFor="let language of movie.languages | split:','">
+                                            {{language}}
+                                        </strong>
+                                    </li>
+                                    <li class="mb-2">
+                                        <span>Description: </span>
+                                        <strong class="">{{movie.description}}</strong>
+                                    </li>
+                                </ul>
+                                <a routerLink="/ticket/booking/{{movie.id}}" class="btn btn-outline-primary">
+                                    Book Tickets
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </ng-container>
+        <div *ngIf="loading" class="row min-vh-100 justify-content-center align-items-center">
+            <div class="col-3 d-flex justify-content-center align-items-center">
+                <div class="spinner-grow text-muted" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

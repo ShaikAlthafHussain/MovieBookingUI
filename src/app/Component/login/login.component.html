@@ -1,0 +1,74 @@
+<section id="login">
+  <div class="container">
+    <div class="row min-vh-100 d-flex justify-content-center align-items-center">
+      <div class="col-lg-5">
+        <div class="card">
+          <div class="card-body">
+            <div class="text-center mb-4">
+              <img src="./assets/images/login-illus.png" width="200" height="200" alt="Login page illustration">
+              <h3>Login into your account</h3>
+            </div>
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+              <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input formControlName="username" class="form-control" type="text" name="username" id="username"
+                  placeholder="e.g johndoe" [ngClass]="{
+                    'is-invalid': loginForm.controls['username'].invalid 
+                    && loginForm.controls['username'].touched  ,
+                    'is-invalid ': submitted 
+                    && loginForm.controls['username'].untouched  ,
+                    '':loginForm.controls['username'].valid,
+                  }" />
+                <div class="invalid-feedback" *ngIf="(loginForm.controls['username'].untouched
+                || loginForm.controls['username'].invalid )
+                && loginForm.controls['username'].errors?.['required']">
+                  This field is required
+                </div>
+                <div class="invalid-feedback" *ngIf="(loginForm.controls['username'].touched
+                || loginForm.controls['username'].invalid )
+                && loginForm.controls['username'].errors?.['minlength']">
+                  Minimum length is 8 characters
+                </div>
+              </div>
+              <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input formControlName="password" class="form-control" type="password" id="password" [ngClass]="{
+                    'is-invalid': loginForm.controls['password'].invalid 
+                    && loginForm.controls['password'].touched  ,
+                    'is-invalid ': submitted 
+                    && loginForm.controls['password'].untouched  ,
+                    '':loginForm.controls['password'].valid,
+                  }" />
+                <div class="invalid-feedback" *ngIf="(loginForm.controls['password'].untouched
+              || loginForm.controls['password'].invalid )
+              && loginForm.controls['password'].errors?.['required']">
+                  This field is required
+                </div>
+                <div class="invalid-feedback" *ngIf="(loginForm.controls['password'].touched
+              || loginForm.controls['password'].invalid )
+              && loginForm.controls['password'].errors?.['minlength']">
+                  Minimum length is 6 characters
+                </div>
+              </div>
+              <div class="text-center mb-3">
+                <ng-container *ngIf="!submitted else loadingButton">
+                  <button type="submit" class="btn btn-success">Login</button>
+                </ng-container>
+                <ng-template #loadingButton>
+                  <button class="btn btn-success" type="button" disabled>
+                    <span class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"></span>
+                    Checking..
+                  </button>
+                </ng-template>
+
+              </div>
+            </form>
+            <div class="text-center mt-4">
+              <p>Don't have an account? <a [routerLink]="['/register']">Create</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
